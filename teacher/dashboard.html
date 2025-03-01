@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - LNEMIS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-wrapper">
+        <!-- Sidebar will be loaded dynamically -->
+        <div id="sidebar-placeholder"></div>
+
+        <main class="main-content">
+            <div class="dashboard-header">
+                <h2>Teacher Dashboard</h2>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-primary position-relative">
+                        <i class="bi bi-bell"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="bi bi-plus-lg"></i> New Assignment
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <div class="stat-card card">
+                        <div class="card-body">
+                            <div class="stat-icon bg-primary">
+                                <i class="bi bi-people"></i>
+                            </div>
+                            <h6>Total Students</h6>
+                            <div class="stat-value">300</div>
+                            <div class="trend up">
+                                <i class="bi bi-arrow-up"></i> 12% from last month
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card card">
+                        <div class="card-body">
+                            <div class="stat-icon bg-success">
+                                <i class="bi bi-graph-up"></i>
+                            </div>
+                            <h6>Attendance Rate</h6>
+                            <div class="stat-value">94.5%</div>
+                            <div class="trend up">
+                                <i class="bi bi-arrow-up"></i> 3% from last week
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card card">
+                        <div class="card-body">
+                            <div class="stat-icon bg-warning">
+                                <i class="bi bi-book"></i>
+                            </div>
+                            <h6>Active Courses</h6>
+                            <div class="stat-value">5</div>
+                            <div class="trend neutral">
+                                <i class="bi bi-dash"></i> No change
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card card">
+                        <div class="card-body">
+                            <div class="stat-icon bg-info">
+                                <i class="bi bi-list-task"></i>
+                            </div>
+                            <h6>Pending Tasks</h6>
+                            <div class="stat-value">8</div>
+                            <div class="trend down">
+                                <i class="bi bi-arrow-down"></i> 2 completed today
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance and Attendance Charts -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="card-title">Class Performance Overview</h5>
+                                <div class="btn-group">
+                                    <button class="btn btn-outline-secondary active">Week</button>
+                                    <button class="btn btn-outline-secondary">Month</button>
+                                    <button class="btn btn-outline-secondary">Year</button>
+                                </div>
+                            </div>
+                            <div class="chart-container" style="height: 300px;">
+                                <canvas id="performanceChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title mb-4">Attendance Distribution</h5>
+                            <div class="chart-container" style="height: 300px;">
+                                <canvas id="attendanceChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activities and Upcoming Classes -->
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title mb-4">Recent Activities</h5>
+                            <div class="activity-list">
+                                <div class="activity-item">
+                                    <div class="activity-icon bg-success">
+                                        <i class="bi bi-check-lg"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <h6>Math Assignment Graded</h6>
+                                        <p>Grade 10A - 28 submissions</p>
+                                        <small class="text-muted">2 hours ago</small>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon bg-primary">
+                                        <i class="bi bi-file-text"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <h6>New Lesson Plan Added</h6>
+                                        <p>Physics - Wave Motion</p>
+                                        <small class="text-muted">5 hours ago</small>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon bg-warning">
+                                        <i class="bi bi-calendar-event"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <h6>Parent Meeting Scheduled</h6>
+                                        <p>Grade 11B - Progress Discussion</p>
+                                        <small class="text-muted">Yesterday</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title mb-4">Upcoming Classes</h5>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Class</th>
+                                            <th>Time</th>
+                                            <th>Room</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Mathematics</td>
+                                            <td>09:00 AM</td>
+                                            <td>Room 101</td>
+                                            <td><span class="badge bg-success">Next</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Physics</td>
+                                            <td>10:30 AM</td>
+                                            <td>Lab 3</td>
+                                            <td><span class="badge bg-secondary">Upcoming</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Literature</td>
+                                            <td>10:30 AM</td>
+                                            <td>Lab 3</td>
+                                            <td><span class="badge bg-secondary">Active</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>English</td>
+                                            <td>10:30 AM</td>
+                                            <td>Lab 3</td>
+                                            <td><span class="badge bg-success">Active</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mathematics</td>
+                                            <td>10:30 AM</td>
+                                            <td>Lab 3</td>
+                                            <td><span class="badge bg-secondary">Upcoming</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Chemistry</td>
+                                            <td>01:00 PM</td>
+                                            <td>Lab 2</td>
+                                            <td><span class="badge bg-secondary">Upcoming</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

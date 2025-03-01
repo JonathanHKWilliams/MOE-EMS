@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LNEMIS - Liberian National Education Management Information System</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="landing-page">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent position-absolute w-100">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="images/logo.png" alt="LNEMIS Logo" height="40">
+                LNEMIS
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portals">Portals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#news">News</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <h1 class="display-4 text-white mb-4">Welcome to LNEMIS</h1>
+                    <p class="lead text-white mb-5">Transforming Education Through Digital Innovation</p>
+                    <a href="#portals" class="btn btn-primary btn-lg">Access Portals</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="portals" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Access Your Portal</h2>
+            <div class="row g-4">
+                <!-- Administrative Portals -->
+                <div class="col-md-4">
+                    <div class="portal-card admin">
+                        <div class="card h-100 text-center">
+                            <div class="card-body">
+                                <i class="fas fa-user-tie portal-icon mb-3"></i>
+                                <h3 class="card-title">Administrative</h3>
+                                <p class="card-text">For Ministry Officials, County Officers, and District Officers</p>
+                                <a href="admin_login.html" class="btn btn-primary">Access Portal</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Teacher Portal -->
+                <div class="col-md-4">
+                    <div class="portal-card teacher">
+                        <div class="card h-100 text-center">
+                            <div class="card-body">
+                                <i class="fas fa-chalkboard-teacher portal-icon mb-3"></i>
+                                <h3 class="card-title">Teachers</h3>
+                                <p class="card-text">Access your classroom management tools and resources</p>
+                                <a href="teacher_login.html" class="btn btn-primary">Access Portal</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Student Portal -->
+                <div class="col-md-4">
+                    <div class="portal-card student">
+                        <div class="card h-100 text-center">
+                            <div class="card-body">
+                                <i class="fas fa-user-graduate portal-icon mb-3"></i>
+                                <h3 class="card-title">Students</h3>
+                                <p class="card-text">Access your learning materials and track your progress</p>
+                                <a href="student_login.html" class="btn btn-primary">Access Portal</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Parent Portal -->
+                <div class="col-md-4">
+                    <div class="portal-card parent">
+                        <div class="card h-100 text-center">
+                            <div class="card-body">
+                                <i class="fas fa-users portal-icon mb-3"></i>
+                                <h3 class="card-title">Parents</h3>
+                                <p class="card-text">Monitor your child's progress and communicate with teachers</p>
+                                <a href="parent_login.html" class="btn btn-primary">Access Portal</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Key Features</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="feature-card text-center">
+                        <i class="fas fa-chart-line feature-icon mb-3"></i>
+                        <h4>Real-time Analytics</h4>
+                        <p>Track performance metrics and educational outcomes</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-card text-center">
+                        <i class="fas fa-book-reader feature-icon mb-3"></i>
+                        <h4>Digital Learning</h4>
+                        <p>Access educational resources anytime, anywhere</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-card text-center">
+                        <i class="fas fa-comments feature-icon mb-3"></i>
+                        <h4>Communication</h4>
+                        <p>Seamless interaction between stakeholders</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-card text-center">
+                        <i class="fas fa-shield-alt feature-icon mb-3"></i>
+                        <h4>Secure Access</h4>
+                        <p>Protected data with role-based permissions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <p>Ministry of Education<br>Monrovia, Liberia</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#about">About LNEMIS</a></li>
+                        <li><a href="#help">Help Center</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Connect With Us</h5>
+                    <div class="social-icons">
+                        <a href="#" class="me-3"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
