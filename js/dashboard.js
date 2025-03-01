@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Check authentication
-    checkAuth();
+    // checkAuth();
     
     // Load sidebar
     loadSidebar();
