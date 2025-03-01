@@ -3,171 +3,403 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LNEMIS - Liberian National Education Management Information System</title>
-    <link rel="stylesheet" href="styles/main.css">
+    <title>Ministry of Education - Liberia</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css" integrity="sha512-v8QQ0YQ3H4K6Ic3PJkym91KoeNT5S3PnDKvqnwqFD1oiqIl653crGZplPdU5KKtHjO0QKcQ2aUlQZYjHczkmGw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css" integrity="sha512-58P9Hy7II0YeXLv+iFiLCv1rtLW47xmiRpC1oFafeKNShp8V5bKV/ciVtYqbk2YfxXQMt58DjNfkXFOn62xE+g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Highcharts Core Library -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<!-- Highcharts Maps Library -->
+<script src="https://code.highcharts.com/maps.js"></script>
+    <link rel="stylesheet" href="styles/landing.css">
 </head>
-<body class="landing-page">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent position-absolute w-100">
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="images/logo.png" alt="LNEMIS Logo" height="40">
-                LNEMIS
+                <img src="./assets/images/MOE Logo.png" alt="MOE Logo" height="40">
+                <h3>Ministry of Education</h3>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portals">Portals</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#news">News</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#counties">Counties</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Portal
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/Admin/admin_dashboard.html">Admin Dashboard</a></li>
+                            <li><a class="dropdown-item" href="/Admin/schools.html">Students Portal</a></li>
+                            <li><a class="dropdown-item" href="/Admin/students.html">Parents Portal</a></li>
+                            <li><a class="dropdown-item" href="/teacher/dashboard.html">Teachers Portal</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#latest-news">Latest News</a></li>
+                    <li class="nav-item"><a class="nav-link btn-login" href="/login.html">Login</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <header class="hero-section">
-        <div class="container">
-            <div class="row align-items-center min-vh-100">
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container" id="hero-container">
+            <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <h1 class="display-4 text-white mb-4">Welcome to LNEMIS</h1>
-                    <p class="lead text-white mb-5">Transforming Education Through Digital Innovation</p>
-                    <a href="#portals" class="btn btn-primary btn-lg">Access Portals</a>
+                    <h1>Transforming Education in Liberia</h1>
+                    <p>Join us in revolutionizing education management across all counties</p>
+                    <button class="btn btn-primary btn-lg">Get Started</button>
                 </div>
-            </div>
-        </div>
-    </header>
-
-    <section id="portals" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5">Access Your Portal</h2>
-            <div class="row g-4">
-                <!-- Administrative Portals -->
-                <div class="col-md-4">
-                    <div class="portal-card admin">
-                        <div class="card h-100 text-center">
-                            <div class="card-body">
-                                <i class="fas fa-user-tie portal-icon mb-3"></i>
-                                <h3 class="card-title">Administrative</h3>
-                                <p class="card-text">For Ministry Officials, County Officers, and District Officers</p>
-                                <a href="admin_login.html" class="btn btn-primary">Access Portal</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Teacher Portal -->
-                <div class="col-md-4">
-                    <div class="portal-card teacher">
-                        <div class="card h-100 text-center">
-                            <div class="card-body">
-                                <i class="fas fa-chalkboard-teacher portal-icon mb-3"></i>
-                                <h3 class="card-title">Teachers</h3>
-                                <p class="card-text">Access your classroom management tools and resources</p>
-                                <a href="teacher_login.html" class="btn btn-primary">Access Portal</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Student Portal -->
-                <div class="col-md-4">
-                    <div class="portal-card student">
-                        <div class="card h-100 text-center">
-                            <div class="card-body">
-                                <i class="fas fa-user-graduate portal-icon mb-3"></i>
-                                <h3 class="card-title">Students</h3>
-                                <p class="card-text">Access your learning materials and track your progress</p>
-                                <a href="student_login.html" class="btn btn-primary">Access Portal</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Parent Portal -->
-                <div class="col-md-4">
-                    <div class="portal-card parent">
-                        <div class="card h-100 text-center">
-                            <div class="card-body">
-                                <i class="fas fa-users portal-icon mb-3"></i>
-                                <h3 class="card-title">Parents</h3>
-                                <p class="card-text">Monitor your child's progress and communicate with teachers</p>
-                                <a href="parent_login.html" class="btn btn-primary">Access Portal</a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-lg-6">
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="features" class="bg-light py-5">
+    <!-- Features Section -->
+    <section id="features" class="features">
         <div class="container">
-            <h2 class="text-center mb-5">Key Features</h2>
-            <div class="row g-4">
-                <div class="col-md-3">
-                    <div class="feature-card text-center">
-                        <i class="fas fa-chart-line feature-icon mb-3"></i>
-                        <h4>Real-time Analytics</h4>
-                        <p>Track performance metrics and educational outcomes</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="feature-card text-center">
-                        <i class="fas fa-book-reader feature-icon mb-3"></i>
-                        <h4>Digital Learning</h4>
-                        <p>Access educational resources anytime, anywhere</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="feature-card text-center">
-                        <i class="fas fa-comments feature-icon mb-3"></i>
-                        <h4>Communication</h4>
-                        <p>Seamless interaction between stakeholders</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="feature-card text-center">
-                        <i class="fas fa-shield-alt feature-icon mb-3"></i>
-                        <h4>Secure Access</h4>
-                        <p>Protected data with role-based permissions</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-dark text-white py-4">
-        <div class="container">
+            <h2 class="text-center mb-5">Why should you Trust this System?</h2>
             <div class="row">
                 <div class="col-md-4">
-                    <h5>Contact Us</h5>
-                    <p>Ministry of Education<br>Monrovia, Liberia</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#about">About LNEMIS</a></li>
-                        <li><a href="#help">Help Center</a></li>
-                        <li><a href="#privacy">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Connect With Us</h5>
-                    <div class="social-icons">
-                        <a href="#" class="me-3"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <div class="feature-card" id="feature-card1">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-lock"></i>                       
+                         </div>
+                        <h3>Secure Data Management</h3>
+                        <p>Your data is protected with industry-standard encryption and security measures</p>
                     </div>
                 </div>
+                <div class="col-md-4">
+                    <div class="feature-card" id="feature-card2">
+                        <div class="feature-icon">
+                            <i class="fa-solid  fa-chart-simple"></i>
+                        </div>
+                        <h3>Real-time Analytics</h3>
+                        <p>Access comprehensive educational data and insights instantly</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card" id="feature-card3">
+                        <div class="feature-ic
+                        on">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+                        <h3>24/7 Support</h3>
+                        <p>Our dedicated team is always ready to assist you</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Counties Section -->
+    <section id="counties" class="counties">
+        <div class="container">
+            <h2 class="text-center mb-5">Explore the latest Counties...</h2>
+            <div class="row g-4"> 
+                <div class="col-6 col-md-3">
+
+                    <div class="county-card d-flex justify-content-between align-items-center">
+                        <img class="img-fluid" src="./assets/images/Bomi_County_Flag__77534.jpg" alt="Bomi County">
+                        <h4>Bomi County</h4>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="county-card d-flex justify-content-between align-items-center">
+                        <img class="img-fluid" src="./assets/images/Bong_County_Flag__02962.jpg" alt="Bong County">
+                        <h4>Bong County</h4>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="county-card d-flex justify-content-between align-items-center">
+                        <img class="img-fluid" src="./assets/images/Gbarpolu_County_Flag__71750.jpg" alt="Gbarpolu County">
+                        <h4>Gbarpolu County</h4>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="county-card d-flex justify-content-between align-items-center">
+                        <img class="img-fluid" src="./assets/images/Grand_Bassa_County_Flag__03183.jpg" alt="Grand Bassa County">
+                        <h4>Grand Bassa County</h4>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="county-card d-flex justify-content-between align-items-center">
+                        <img class="img-fluid" src="./assets/images/Grand_Cape_Mount_County_Flag__94537.jpg" alt="Grand Cape Mount County">
+                        <h4>Grand Cape Mount County</h4>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="county-card d-flex justify-content-between align-items-center">
+                        <img class="img-fluid" src="./assets/images/Grand_Gedeh_County_Flag__51143.jpg" alt="Grand Gedeh County">
+                        <h4>Grand Gedeh County</h4>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="county-card d-flex justify-content-between align-items-center">
+                        <img class="img-fluid" src="./assets/images/Grand_Kru_County_Flag__87625.jpg" alt="Grand Kru County">
+                        <h4>Grand Kru County</h4>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="county-card d-flex justify-content-between align-items-center">
+                        <img class="img-fluid" src="./assets/images/Lofa_County_Flag__05270.jpg" alt="Lofa County">
+                        <h4>Lofa County</h4>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="county-card d-flex justify-content-between align-items-center">
+                        <img class="img-fluid" src="./assets/images/Margibi_County_Flag__96882.jpg" alt="Margibi County">
+                        <h4>Margibi County</h4>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="county-card d-flex justify-content-between align-items-center">
+                        <img class="img-fluid" src="./assets/images/Maryland_County_Flag__75756.jpg" alt="Maryland County">
+                        <h4>Maryland County</h4>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="county-card d-flex justify-content-between align-items-center">
+                        <img class="img-fluid" src="./assets/images/Montserrado_County_Flag__82529.jpg" alt="Montserrado County">
+                        <h4>Montserrado County</h4>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="county-card d-flex justify-content-between align-items-center">
+                        <img class="img-fluid" src="./assets/images/Nimba_County_Flag__88156.jpg" alt="Nimba County">
+                        <h4>Nimba County</h4>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="county-card d-flex justify-content-between align-items-center">
+                        <img class="img-fluid" src="./assets/images/Rivercess_County_Flag__90253.jpg" alt="Rivercess County">
+                        <h4>Rivercess County</h4>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="county-card d-flex justify-content-between align-items-center">
+                        <img class="img-fluid" src="./assets/images/River_Gee_County_Flag__72825.jpg" alt="River Gee County">
+                        <h4>River Gee County</h4>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="county-card d-flex justify-content-between align-items-center">
+                        <img class="img-fluid" src="./assets/images/Sinoe_County_Flag__60253.jpg" alt="Sinoe County">
+                        <h4>Sinoe County</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section id="map" class="map-section">
+        <div class="container d-flex justify-content-between">
+            <iframe title="Our  Education Data By Map " aria-label="Map" id="datawrapper-chart-xrlmC" src="https://datawrapper.dwcdn.net/xrlmC/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 45% !important; border: none;" height="80" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+            </script> 
+
+    <section class="impact-section" style="width: 60%">
+        <h1>Educational Impact in Grand Bassa County</h1>
+
+        <div class="impact-item">
+            <h2>1. School Enrollment Rates</h2>
+            <p><strong>Grand Bassa County: </strong> 78% enrollment rate (up from 60% last year)</p>
+            <p><strong>Impact:</strong> A 18% increase in enrollment due to the construction of new schools and an enrollment campaign.</p>
+        </div>
+
+        <div class="impact-item">
+            <h2>2. Student Performance in National Examinations</h2>
+            <p><strong>Grand Bassa County: </strong> 72% pass rate in national exams (up from 55% last year)</p>
+            <p><strong>Impact:</strong> A 17% improvement in performance due to improved teacher training and educational resources.</p>
+        </div>
+
+        <div class="impact-item">
+            <h2>3. Teacher Qualifications and Training</h2>
+            <p><strong>Grand Bassa County:</strong> 85% of teachers are qualified (up from 70% last year)</p>
+            <p><strong>Impact:</strong> A 15% increase in qualified teachers due to ongoing teacher training programs.</p>
+        </div>
+
+        <div class="impact-item">
+            <h2>4. Dropout Rates</h2>
+            <p><strong>Grand Bassa County: </strong> 4% dropout rate (down from 10% last year)</p>
+            <p><strong>Impact:</strong> A 6% decrease in dropout rates due to retention programs and family incentives.</p>
+        </div>
+        
+    </section>
+
+        </div>
+    </section>
+    
+    <!-- Process Section -->
+    <section id="process" class="process">
+        <div class="container">
+            <h2 class="text-center mb-5">Register your School</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="process-card">
+                        <div class="process-icon">1</div>
+                        <h4>Create Account</h4>
+                        <p>Register as a school administrator</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="process-card">
+                        <div class="process-icon">2</div>
+                        <h4>Add Details</h4>
+                        <p>Enter your school information</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="process-card">
+                        <div class="process-icon">3</div>
+                        <h4>Verification</h4>
+                        <p>Submit documents for verification</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="process-card">
+                        <div class="process-icon">4</div>
+                        <h4>Approval</h4>
+                        <p>Get approved and start managing</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Minister Message -->
+    <section id="news" class="news">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <div  class="minister-img ">
+                    <img src="./assets/images/Min.-Jallah-Official-Pic-Unlabeled- (1).jpg" alt="Minister of Education" class="img-fluid rounded">
+                </div>
+                <div class="col-lg-6">
+                    <h2>Latest from the Minister's Desk</h2>
+                    <p class="lead">Transforming Education through Digital Innovation</p>
+                    <p>
+                        The Ministry of Education is committed to providing quality, transparent, and inclusive education for all Liberians. To achieve this, we urge everyone to participate in the registration process for students, teachers, and parents.
+                        This system is essential to:
+                        
+                        Ensure equal access to education for every child.
+                        Improve teacher training and school resources.
+                        Enhance transparency and better policy implementation.
+                        
+                        Your participation is vital in shaping a stronger education system and a brighter future for Liberia.
+                        Thank you for your trust and cooperation.</p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Register School Section -->
+    <section id="register-school" class="register-school">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <img src="assets/images/register-school.svg" alt="Register School" class="img-fluid">
+                </div>
+                <div class="col-lg-6">
+                    <h2>Register your school to help the ministry keep track</h2>
+                    <p>Join our growing network of educational institutions and help us build a better future for Liberia's education system.</p>
+                    <button class="btn btn-primary">Register Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest News Section -->
+    <section id="latest-news" class="latest-news">
+        <div class="container">
+            <h2 class="text-center mb-5">The Latest News and Updates</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="news-card">
+                        <img src="assets/images/news1.jpg" alt="News 1" class="img-fluid">
+                        <div class="news-content">
+                            <h4>Register your school to help the ministry keep track</h4>
+                            <p>Learn more about how your institution can contribute to Liberia's educational development.</p>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="news-card">
+                        <img src="assets/images/news2.jpg" alt="News 2" class="img-fluid">
+                        <div class="news-content">
+                            <h4>How to register your child for the new term</h4>
+                            <p>Step-by-step guide for parents to register their children for the upcoming academic term.</p>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="news-card">
+                        <img src="assets/images/news3.jpg" alt="News 3" class="img-fluid">
+                        <div class="news-content">
+                            <h4>Teacher training programs now available</h4>
+                            <p>Explore our latest professional development opportunities for educators.</p>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="assets/images/moe-logo.png" alt="MOE Logo" height="40">
+                    <p class="mt-3">Ministry of Education, Republic of Liberia</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Guidelines</a></li>
+                        <li><a href="#">Policies</a></li>
+                        <li><a href="#">Downloads</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Connect</h5>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom text-center mt-4">
+                <p>&copy; 2025 Ministry of Education, Liberia. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="https://kit.fontawesome.com/your-kit-code.js"></script>
+    <script src="js/landing.js"></script>
 </body>
 </html>
