@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule - Student Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@5.11.0/main.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@5.11.0/main.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@5.11.0/main.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+</head>
+<body id="body-pd">
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header_toggle">
+            <i class='bx bx-menu' id="header-toggle"></i>
+        </div>
+        <div class="header_profile">
+            <span class="username">Welcome, <span id="student-name">Student</span></span>
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <i class='bx bx-user'></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+                    <li><a class="dropdown-item" href="settings.html">Settings</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#" id="logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div>
+                <a href="dashboard.html" class="nav_logo">
+                    <i class='bx bx-layer nav_logo-icon'></i>
+                    <span class="nav_logo-name">MOE-EMS</span>
+                </a>
+                <div class="nav_list">
+                    <a href="dashboard.html" class="nav_link">
+                        <i class='bx bx-grid-alt nav_icon'></i>
+                        <span class="nav_name">Dashboard</span>
+                    </a>
+                    <a href="courses.html" class="nav_link">
+                        <i class='bx bx-book nav_icon'></i>
+                        <span class="nav_name">My Courses</span>
+                    </a>
+                    <a href="assignments.html" class="nav_link">
+                        <i class='bx bx-task nav_icon'></i>
+                        <span class="nav_name">Assignments</span>
+                    </a>
+                    <a href="grades.html" class="nav_link">
+                        <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
+                        <span class="nav_name">Grades</span>
+                    </a>
+                    <a href="attendance.html" class="nav_link">
+                        <i class='bx bx-calendar-check nav_icon'></i>
+                        <span class="nav_name">Attendance</span>
+                    </a>
+                    <a href="schedule.html" class="nav_link active">
+                        <i class='bx bx-time nav_icon'></i>
+                        <span class="nav_name">Schedule</span>
+                    </a>
+                    <a href="resources.html" class="nav_link">
+                        <i class='bx bx-folder nav_icon'></i>
+                        <span class="nav_name">Resources</span>
+                    </a>
+                    <a href="communication.html" class="nav_link">
+                        <i class='bx bx-message-square-detail nav_icon'></i>
+                        <span class="nav_name">Communication</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2>Class Schedule</h2>
+                    <p>View and manage your daily class schedule</p>
+                </div>
+            </div>
+
+            <!-- Today's Schedule Quick View -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Today's Schedule</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="timeline" id="todaySchedule">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Schedule Calendar -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5>Weekly Schedule</h5>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-outline-primary" data-view="timeGridWeek">Week</button>
+                                <button type="button" class="btn btn-outline-primary active" data-view="timeGridDay">Day</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="scheduleCalendar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course Schedule Overview -->
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Course Schedule Overview</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Course</th>
+                                            <th>Days</th>
+                                            <th>Time</th>
+                                            <th>Room</th>
+                                            <th>Teacher</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="courseSchedule">
+                                        <!-- Will be populated by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Upcoming Events</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="upcomingEvents">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Class Details Modal -->
+    <div class="modal fade" id="classModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Class Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="classDetails">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@5.11.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@5.11.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@5.11.0/main.min.js"></script>
+    <script src="../js/students/schedule.js"></script>
+</body>
+</html>
