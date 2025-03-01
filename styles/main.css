@@ -499,7 +499,7 @@ body {
 /* Login Pages */
 .login-page {
     min-height: 100vh;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background-color: white;
     position: relative;
     overflow: hidden;
 }
@@ -528,6 +528,7 @@ body {
     border-radius: 1rem;
     padding: 2rem;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgb(188, 188, 188);
     animation: fadeIn 0.5s ease forwards;
 }
 
