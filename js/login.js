@@ -61,7 +61,7 @@ function handleAdminLogin(username, password, role) {
             hideLoading();
             switch(role) {
                 case 'minister':
-                    window.location.href = 'minister_dashboard.html';
+                    window.location.href = '/Admin/admin_dashboard.html';
                     break;
                 case 'county':
                     window.location.href = 'county_dashboard.html';
@@ -182,7 +182,7 @@ function checkLoggedIn() {
     if (user && user.token) {
         switch(user.role) {
             case 'minister':
-                window.location.href = 'minister_dashboard.html';
+                window.location.href = '/Admin/admin_dashboard.html';
                 break;
             case 'county':
                 window.location.href = 'county_dashboard.html';
@@ -204,4 +204,4 @@ function checkLoggedIn() {
 }
 
 // Call checkLoggedIn when page loads
-checkLoggedIn();
+// checkLoggedIn();

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Settings - LNEMIS Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../styles/admin.css">
+</head>
+<body class="admin-dashboard">
+    <div class="dashboard-wrapper">
+        <div id="sidebar-placeholder"></div>
+
+        <main class="main-content">
+            <header class="content-header">
+                <div class="header-left">
+                    <h1>System Settings</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Settings</li>
+                        </ol>
+                    </nav>
+                </div>
+            </header>
+
+            <div class="row g-4">
+                <!-- General Settings -->
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">General Settings</h5>
+                            <form id="generalSettingsForm" class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">System Name</label>
+                                    <input type="text" class="form-control" value="LNEMIS" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Academic Year</label>
+                                    <input type="text" class="form-control" value="2024-2025" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Current Term</label>
+                                    <select class="form-select">
+                                        <option value="1">First Term</option>
+                                        <option value="2">Second Term</option>
+                                        <option value="3">Third Term</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Default Language</label>
+                                    <select class="form-select">
+                                        <option value="en">English</option>
+                                        <option value="fr">French</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">System Email</label>
+                                    <input type="email" class="form-control" value="system@moe.gov.lr" required>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Save General Settings</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Notification Settings -->
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Notification Settings</h5>
+                            <form id="notificationSettingsForm" class="row g-3">
+                                <div class="col-12">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="emailNotifications" checked>
+                                        <label class="form-check-label" for="emailNotifications">Email Notifications</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="smsNotifications">
+                                        <label class="form-check-label" for="smsNotifications">SMS Notifications</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="systemAlerts" checked>
+                                        <label class="form-check-label" for="systemAlerts">System Alerts</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Save Notification Settings</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Security Settings -->
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Security Settings</h5>
+                            <form id="securitySettingsForm" class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Minimum Password Length</label>
+                                    <input type="number" class="form-control" value="8" min="8" max="32">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Password Expiry (days)</label>
+                                    <input type="number" class="form-control" value="90" min="30">
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="twoFactorAuth" checked>
+                                        <label class="form-check-label" for="twoFactorAuth">Enable Two-Factor Authentication</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="loginAttempts" checked>
+                                        <label class="form-check-label" for="loginAttempts">Limit Login Attempts</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Save Security Settings</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar Settings -->
+                <div class="col-lg-4">
+                    <!-- Backup Settings -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Backup Settings</h5>
+                            <form id="backupSettingsForm" class="row g-3">
+                                <div class="col-12">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="autoBackup" checked>
+                                        <label class="form-check-label" for="autoBackup">Automatic Backup</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Backup Frequency</label>
+                                    <select class="form-select">
+                                        <option value="daily">Daily</option>
+                                        <option value="weekly">Weekly</option>
+                                        <option value="monthly">Monthly</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Retention Period (days)</label>
+                                    <input type="number" class="form-control" value="30" min="7">
+                                </div>
+                                <div class="col-12">
+                                    <button type="button" class="btn btn-primary w-100">Create Manual Backup</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- System Maintenance -->
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title">System Maintenance</h5>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-outline-primary" type="button">
+                                    <i class="bi bi-arrow-clockwise"></i> Clear Cache
+                                </button>
+                                <button class="btn btn-outline-primary" type="button">
+                                    <i class="bi bi-speedometer2"></i> System Optimization
+                                </button>
+                                <button class="btn btn-outline-primary" type="button">
+                                    <i class="bi bi-database-check"></i> Database Cleanup
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Information -->
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title">System Information</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>Version</span>
+                                    <span class="text-muted">1.0.0</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>Last Update</span>
+                                    <span class="text-muted">Mar 1, 2025</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>PHP Version</span>
+                                    <span class="text-muted">8.2.0</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>Database</span>
+                                    <span class="text-muted">MySQL 8.0</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/admin/settings.js"></script>
+</body>
+</html>

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counties Management - LNEMIS Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.bootstrap5.min.css">
+    <link rel="stylesheet" href="../styles/admin.css">
+</head>
+<body class="admin-dashboard">
+    <div class="dashboard-wrapper">
+        <!-- Sidebar will be loaded dynamically -->
+        <div id="sidebar-placeholder"></div>
+
+        <main class="main-content">
+            <header class="content-header">
+                <div class="header-left">
+                    <h1>Counties Management</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Counties</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCountyModal">
+                        <i class="bi bi-plus-lg"></i> Add County Officer
+                    </button>
+                </div>
+            </header>
+
+            <div class="row g-4">
+                <!-- County Overview Cards -->
+                <div class="col-12">
+                    <div class="row g-4">
+                        <div class="col-xl-3 col-md-6">
+                            <div class="stats-card">
+                                <div class="stats-header">
+                                    <div class="stats-icon bg-primary">
+                                        <i class="bi bi-geo-alt-fill"></i>
+                                    </div>
+                                </div>
+                                <div class="stats-body">
+                                    <h3>Total Counties</h3>
+                                    <div class="number">15</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="stats-card">
+                                <div class="stats-header">
+                                    <div class="stats-icon bg-success">
+                                        <i class="bi bi-person-badge"></i>
+                                    </div>
+                                </div>
+                                <div class="stats-body">
+                                    <h3>County Officers</h3>
+                                    <div class="number">13</div>
+                                    <div class="trend warning">
+                                        <i class="bi bi-exclamation-triangle"></i>
+                                        <span>2 positions vacant</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="stats-card">
+                                <div class="stats-header">
+                                    <div class="stats-icon bg-info">
+                                        <i class="bi bi-building"></i>
+                                    </div>
+                                </div>
+                                <div class="stats-body">
+                                    <h3>Total Schools</h3>
+                                    <div class="number">2,547</div>
+                                    <div class="trend up">
+                                        <i class="bi bi-arrow-up"></i>
+                                        <span>15% increase</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="stats-card">
+                                <div class="stats-header">
+                                    <div class="stats-icon bg-warning">
+                                        <i class="bi bi-people"></i>
+                                    </div>
+                                </div>
+                                <div class="stats-body">
+                                    <h3>Total Students</h3>
+                                    <div class="number">245,678</div>
+                                    <div class="trend up">
+                                        <i class="bi bi-arrow-up"></i>
+                                        <span>12% increase</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Counties Table -->
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="card-title">Counties Overview</h5>
+                                <div class="btn-group">
+                                    <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#filterModal">
+                                        <i class="bi bi-funnel"></i> Filter
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exportModal">
+                                        <i class="bi bi-download"></i> Export
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="countiesTable" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>County</th>
+                                            <th>CEO</th>
+                                            <th>Schools</th>
+                                            <th>Teachers</th>
+                                            <th>Students</th>
+                                            <th>Performance</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="../assets/images/Grand_Bassa_County_Flag__03183.jpg" alt="Grand Bassa" class="county-flag me-2">
+                                                    Grand Bassa County
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="../assets/images/Light_Image-02-02-removebg-preview.png" width="32" height="32" alt="CEO" class="avatar sm me-2">
+                                                    Jefferson Vobah
+                                                </div>
+                                            </td>
+                                            <td>156</td>
+                                            <td>1,245</td>
+                                            <td>45,678</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="progress flex-grow-1 me-2" style="height: 6px;">
+                                                        <div class="progress-bar bg-success" style="width: 85%"></div>
+                                                    </div>
+                                                    85%
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-success">Active</span></td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#viewCountyModal">
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editCountyModal">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr> 
+
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="../assets/images/Grand_Bassa_County_Flag__03183.jpg" alt="Grand Bassa" class="county-flag me-2">
+                                                    Grand Bassa County
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="../assets/images/Light_Image-02-02-removebg-preview.png" width="32" height="32" alt="CEO" class="avatar sm me-2">
+                                                    Jefferson Vobah
+                                                </div>
+                                            </td>
+                                            <td>156</td>
+                                            <td>1,245</td>
+                                            <td>45,678</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="progress flex-grow-1 me-2" style="height: 6px;">
+                                                        <div class="progress-bar bg-success" style="width: 85%"></div>
+                                                    </div>
+                                                    85%
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-success">Active</span></td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#viewCountyModal">
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editCountyModal">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr> 
+
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="../assets/images/Grand_Bassa_County_Flag__03183.jpg" alt="Grand Bassa" class="county-flag me-2">
+                                                    Grand Bassa County
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="../assets/images/Light_Image-02-02-removebg-preview.png" width="32" height="32" alt="CEO" class="avatar sm me-2">
+                                                    Jefferson Vobah
+                                                </div>
+                                            </td>
+                                            <td>156</td>
+                                            <td>1,245</td>
+                                            <td>45,678</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="progress flex-grow-1 me-2" style="height: 6px;">
+                                                        <div class="progress-bar bg-success" style="width: 85%"></div>
+                                                    </div>
+                                                    85%
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-success">Active</span></td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#viewCountyModal">
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editCountyModal">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr> 
+
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="../assets/images/Grand_Bassa_County_Flag__03183.jpg" alt="Grand Bassa" class="county-flag me-2">
+                                                    Grand Bassa County
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="../assets/images/Light_Image-02-02-removebg-preview.png" width="32" height="32" alt="CEO" class="avatar sm me-2">
+                                                    Jefferson Vobah
+                                                </div>
+                                            </td>
+                                            <td>156</td>
+                                            <td>1,245</td>
+                                            <td>45,678</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="progress flex-grow-1 me-2" style="height: 6px;">
+                                                        <div class="progress-bar bg-success" style="width: 85%"></div>
+                                                    </div>
+                                                    85%
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-success">Active</span></td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#viewCountyModal">
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editCountyModal">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr> 
+
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="../assets/images/Grand_Bassa_County_Flag__03183.jpg" alt="Grand Bassa" class="county-flag me-2">
+                                                    Grand Bassa County
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="../assets/images/Light_Image-02-02-removebg-preview.png" width="32" height="32" alt="CEO" class="avatar sm me-2">
+                                                    Jefferson Vobah
+                                                </div>
+                                            </td>
+                                            <td>156</td>
+                                            <td>1,245</td>
+                                            <td>45,678</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="progress flex-grow-1 me-2" style="height: 6px;">
+                                                        <div class="progress-bar bg-success" style="width: 85%"></div>
+                                                    </div>
+                                                    85%
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-success">Active</span></td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#viewCountyModal">
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editCountyModal">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr> 
+                                        
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="../assets/images/Grand_Bassa_County_Flag__03183.jpg" alt="Grand Bassa" class="county-flag me-2">
+                                                    Grand Bassa County
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="../assets/images/Light_Image-02-02-removebg-preview.png" width="32" height="32" alt="CEO" class="avatar sm me-2">
+                                                    Jefferson Vobah
+                                                </div>
+                                            </td>
+                                            <td>156</td>
+                                            <td>1,245</td>
+                                            <td>45,678</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="progress flex-grow-1 me-2" style="height: 6px;">
+                                                        <div class="progress-bar bg-success" style="width: 85%"></div>
+                                                    </div>
+                                                    85%
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-success">Active</span></td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#viewCountyModal">
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editCountyModal">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr> 
+
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="../assets/images/Grand_Bassa_County_Flag__03183.jpg" alt="Grand Bassa" class="county-flag me-2">
+                                                    Grand Bassa County
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="../assets/images/Light_Image-02-02-removebg-preview.png" width="32" height="32" alt="CEO" class="avatar sm me-2">
+                                                    Jefferson Vobah
+                                                </div>
+                                            </td>
+                                            <td>156</td>
+                                            <td>1,245</td>
+                                            <td>45,678</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="progress flex-grow-1 me-2" style="height: 6px;">
+                                                        <div class="progress-bar bg-success" style="width: 85%"></div>
+                                                    </div>
+                                                    85%
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-success">Active</span></td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#viewCountyModal">
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editCountyModal">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr> 
+
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="../assets/images/Grand_Bassa_County_Flag__03183.jpg" alt="Grand Bassa" class="county-flag me-2">
+                                                    Grand Bassa County
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="../assets/images/Light_Image-02-02-removebg-preview.png" width="32" height="32" alt="CEO" class="avatar sm me-2">
+                                                    Jefferson Vobah
+                                                </div>
+                                            </td>
+                                            <td>156</td>
+                                            <td>1,245</td>
+                                            <td>45,678</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="progress flex-grow-1 me-2" style="height: 6px;">
+                                                        <div class="progress-bar bg-success" style="width: 85%"></div>
+                                                    </div>
+                                                    85%
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-success">Active</span></td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#viewCountyModal">
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editCountyModal">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                        <!-- Add more county rows -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add County Officer Modal -->
+    <div class="modal fade" id="addCountyModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add County Education Officer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addCountyForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">County</label>
+                                <select class="form-select" required>
+                                    <option value="">Select County</option>
+                                    <option value="montserrado">Montserrado</option>
+                                    <option value="nimba">Nimba</option>
+                                    <!-- Add all counties -->
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Officer Name</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Phone</label>
+                                <input type="tel" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Qualification</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Years of Experience</label>
+                                <input type="number" class="form-control" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Address</label>
+                                <textarea class="form-control" rows="2" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Profile Photo</label>
+                                <input type="file" class="form-control" accept="image/*">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Documents</label>
+                                <input type="file" class="form-control" multiple>
+                                <small class="text-muted">Upload qualification certificates, ID, etc.</small>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="addCountyForm" class="btn btn-primary">Add Officer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Modal -->
+    <div class="modal fade" id="filterModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Filter Counties</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="filterForm">
+                        <div class="mb-3">
+                            <label class="form-label">Performance Range</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" placeholder="Min">
+                                <span class="input-group-text">to</span>
+                                <input type="number" class="form-control" placeholder="Max">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Status</label>
+                            <select class="form-select">
+                                <option value="">All</option>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="warning">Warning</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">School Count</label>
+                            <select class="form-select">
+                                <option value="">All</option>
+                                <option value="0-50">0-50 Schools</option>
+                                <option value="51-100">51-100 Schools</option>
+                                <option value="101+">101+ Schools</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="filterForm" class="btn btn-primary">Apply Filters</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.bootstrap5.min.js"></script>
+    <script src="../js/admin/counties.js"></script>
+</body>
+</html>

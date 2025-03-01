@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minister Dashboard - MOE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../styles/admin.css">
+    <!-- Add Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Add DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+    <!-- Add Leaflet for Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+</head>
+<body class="admin-dashboard">
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../assets/images/MOE Logo.png" alt="MOE Logo" class="logo">
+                <h3>MOE Admin</h3>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h6 class="nav-section-title">MAIN NAVIGATION</h6>
+                    <ul>
+                        <li class="active">
+                            <a href="/Admin/admin_dashboard.html">
+                                <i class="bi bi-grid-1x2-fill"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Admin/counties.html">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <span>Counties</span>
+                                <span class="badge bg-primary">15</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Admin/schools.html">
+                                <i class="bi bi-building"></i>
+                                <span>Schools</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h6 class="nav-section-title">USER MANAGEMENT</h6>
+                    <ul>
+                        <li>
+                            <a href="ministers.html">
+                                <i class="bi bi-person-badge-fill"></i>
+                                <span>Ministers</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="ceos.html">
+                                <i class="bi bi-briefcase-fill"></i>
+                                <span>County CEOs</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Admin/teachers.html">
+                                <i class="bi bi-person-video3"></i>
+                                <span>Teachers</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="students.html">
+                                <i class="bi bi-mortarboard-fill"></i>
+                                <span>Students</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="parents.html">
+                                <i class="bi bi-people-fill"></i>
+                                <span>Parents</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h6 class="nav-section-title">ANALYTICS</h6>
+                    <ul>
+                        <li>
+                            <a href="performance.html">
+                                <i class="bi bi-graph-up"></i>
+                                <span>Performance</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="attendance.html">
+                                <i class="bi bi-calendar-check-fill"></i>
+                                <span>Attendance</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="reports.html">
+                                <i class="bi bi-file-earmark-text-fill"></i>
+                                <span>Reports</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h6 class="nav-section-title">SETTINGS</h6>
+                    <ul>
+                        <li>
+                            <a href="system-settings.html">
+                                <i class="bi bi-gear-fill"></i>
+                                <span>System Settings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="audit-logs.html">
+                                <i class="bi bi-shield-lock-fill"></i>
+                                <span>Audit Logs</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <img src="../assets/images/admin-avatar.jpg" alt="Admin" class="avatar">
+                    <div class="user-details">
+                        <h6 id="admin-name">Super Admin</h6>
+                        <small class="text-muted">System Administrator</small>
+                    </div>
+                </div>
+                <button onclick="handleLogout()" class="btn btn-outline-light w-100">
+                    <i class="bi bi-box-arrow-right"></i>
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="content-header">
+                <div class="header-left">
+                    <h1>Dashboard Overview</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Dashboard</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="header-right">
+                    <div class="header-actions">
+                        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exportModal">
+                            <i class="bi bi-download"></i> Export Data
+                        </button>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary position-relative" data-bs-toggle="dropdown">
+                                <i class="bi bi-bell"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    5
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end notification-menu">
+                                <li><h6 class="dropdown-header">Notifications</h6></li>
+                                <li><a class="dropdown-item" href="#">
+                                    <div class="notification-item">
+                                        <div class="icon bg-primary">
+                                            <i class="bi bi-person-plus"></i>
+                                        </div>
+                                        <div class="content">
+                                            <p>New CEO registered in Montserrado County</p>
+                                            <small>2 minutes ago</small>
+                                        </div>
+                                    </div>
+                                </a></li>
+                                <li><a class="dropdown-item" href="#">
+                                    <div class="notification-item">
+                                        <div class="icon bg-warning">
+                                            <i class="bi bi-exclamation-triangle"></i>
+                                        </div>
+                                        <div class="content">
+                                            <p>System alert: High server load detected</p>
+                                            <small>5 minutes ago</small>
+                                        </div>
+                                    </div>
+                                </a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-center" href="notifications.html">View all notifications</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Quick Stats -->
+                <div class="row g-4 mb-4">
+                    <div class="col-xl-3 col-md-6">
+                        <div class="stats-card">
+                            <div class="stats-header">
+                                <div class="stats-icon bg-primary">
+                                    <i class="bi bi-building"></i>
+                                </div>
+                                <div class="stats-chart">
+                                    <canvas id="schoolsChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="stats-body">
+                                <h3>Total Schools</h3>
+                                <div class="number">2,547</div>
+                                <div class="trend up">
+                                    <i class="bi bi-arrow-up"></i>
+                                    <span>12% from last month</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="stats-card">
+                            <div class="stats-header">
+                                <div class="stats-icon bg-success">
+                                    <i class="bi bi-person-video3"></i>
+                                </div>
+                                <div class="stats-chart">
+                                    <canvas id="teachersChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="stats-body">
+                                <h3>Active Teachers</h3>
+                                <div class="number">15,842</div>
+                                <div class="trend up">
+                                    <i class="bi bi-arrow-up"></i>
+                                    <span>8% from last month</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="stats-card">
+                            <div class="stats-header">
+                                <div class="stats-icon bg-info">
+                                    <i class="bi bi-mortarboard-fill"></i>
+                                </div>
+                                <div class="stats-chart">
+                                    <canvas id="studentsChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="stats-body">
+                                <h3>Total Students</h3>
+                                <div class="number">245,678</div>
+                                <div class="trend up">
+                                    <i class="bi bi-arrow-up"></i>
+                                    <span>15% from last month</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="stats-card">
+                            <div class="stats-header">
+                                <div class="stats-icon bg-warning">
+                                    <i class="bi bi-graph-up"></i>
+                                </div>
+                                <div class="stats-chart">
+                                    <canvas id="performanceChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="stats-body">
+                                <h3>Avg. Performance</h3>
+                                <div class="number">78%</div>
+                                <div class="trend up">
+                                    <i class="bi bi-arrow-up"></i>
+                                    <span>5% from last month</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- County Overview -->
+                <div class="row g-4 mb-4">
+                    <div class="col-xl-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h5 class="card-title">County Overview</h5>
+                                    <div class="btn-group">
+                                        <button class="btn btn-outline-secondary btn-sm active">Schools</button>
+                                        <button class="btn btn-outline-secondary btn-sm">Teachers</button>
+                                        <button class="btn btn-outline-secondary btn-sm">Students</button>
+                                    </div>
+                                </div>
+                                <div id="liberiaMap" style="height: 400px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title mb-4">Top Performing Counties</h5>
+                                <div class="county-list">
+                                    <div class="county-item">
+                                        <div class="county-info">
+                                            <img src="../assets/images/Grand_Bassa_County_Flag__03183.jpg" alt="Montserrado" class="county-flag">
+                                            <div>
+                                                <h6>Grand Bassa County</h6>
+                                                <small class="text-muted">156 Schools</small>
+                                            </div>
+                                        </div>
+                                        <div class="county-stats">
+                                            <div class="progress">
+                                                <div class="progress-bar" style="width: 85%"></div>
+                                            </div>
+                                            <span>85%</span>
+                                        </div>
+                                    </div> 
+                                    <div class="county-item">
+                                        <div class="county-info">
+                                            <img src="../assets/images/Grand_Bassa_County_Flag__03183.jpg" alt="Montserrado" class="county-flag">
+                                            <div>
+                                                <h6>Grand Bassa County</h6>
+                                                <small class="text-muted">156 Schools</small>
+                                            </div>
+                                        </div>
+                                        <div class="county-stats">
+                                            <div class="progress">
+                                                <div class="progress-bar" style="width: 85%"></div>
+                                            </div>
+                                            <span>85%</span>
+                                        </div>
+                                    </div> 
+                                    <div class="county-item">
+                                        <div class="county-info">
+                                            <img src="../assets/images/Grand_Bassa_County_Flag__03183.jpg" alt="Montserrado" class="county-flag">
+                                            <div>
+                                                <h6>Grand Bassa County</h6>
+                                                <small class="text-muted">156 Schools</small>
+                                            </div>
+                                        </div>
+                                        <div class="county-stats">
+                                            <div class="progress">
+                                                <div class="progress-bar" style="width: 85%"></div>
+                                            </div>
+                                            <span>85%</span>
+                                        </div> 
+                                    </div>
+                                    <div class="county-item">
+                                        <div class="county-info">
+                                            <img src="../assets/images/Grand_Bassa_County_Flag__03183.jpg" alt="Montserrado" class="county-flag">
+                                            <div>
+                                                <h6>Grand Bassa County</h6>
+                                                <small class="text-muted">156 Schools</small>
+                                            </div>
+                                        </div>
+                                        <div class="county-stats">
+                                            <div class="progress">
+                                                <div class="progress-bar" style="width: 85%"></div>
+                                            </div>
+                                            <span>85%</span>
+                                        </div>
+                                    </div> 
+                                    <div class="county-item">
+                                        <div class="county-info">
+                                            <img src="../assets/images/Grand_Bassa_County_Flag__03183.jpg" alt="Montserrado" class="county-flag">
+                                            <div>
+                                                <h6>Grand Bassa County</h6>
+                                                <small class="text-muted">156 Schools</small>
+                                            </div>
+                                        </div>
+                                        <div class="county-stats">
+                                            <div class="progress">
+                                                <div class="progress-bar" style="width: 85%"></div>
+                                            </div>
+                                            <span>85%</span>
+                                        </div>
+                                    </div> 
+                                    
+
+
+                                    <!-- Add more county items -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activities and System Health -->
+                <div class="row g-4">
+                    <div class="col-xl-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h5 class="card-title">Recent Activities</h5>
+                                    <a href="activities.html" class="btn btn-link">View All</a>
+                                </div>
+                                <div class="activity-timeline">
+                                    <div class="activity-item">
+                                        <div class="activity-icon bg-primary">
+                                            <i class="bi bi-person-plus"></i>
+                                        </div>
+                                        <div class="activity-content">
+                                            <h6>New CEO Registration</h6>
+                                            <p>New CEO registered for Nimba County</p>
+                                            <small class="text-muted">2 hours ago</small>
+                                        </div>
+                                    </div>
+                                    <!-- Add more activity items -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title mb-4">System Health</h5>
+                                <div class="system-metrics">
+                                    <div class="metric-item">
+                                        <div class="metric-info">
+                                            <h6>Server Load</h6>
+                                            <span class="badge bg-success">Normal</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 65%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Add more metric items -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Export Modal -->
+    <div class="modal fade" id="exportModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Export Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="exportForm">
+                        <div class="mb-3">
+                            <label class="form-label">Select Data Type</label>
+                            <select class="form-select">
+                                <option value="schools">Schools Data</option>
+                                <option value="teachers">Teachers Data</option>
+                                <option value="students">Students Data</option>
+                                <option value="performance">Performance Data</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Date Range</label>
+                            <div class="input-group">
+                                <input type="date" class="form-control">
+                                <span class="input-group-text">to</span>
+                                <input type="date" class="form-control">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Format</label>
+                            <div class="btn-group w-100">
+                                <input type="radio" class="btn-check" name="format" id="excel" checked>
+                                <label class="btn btn-outline-primary" for="excel">Excel</label>
+                                <input type="radio" class="btn-check" name="format" id="pdf">
+                                <label class="btn btn-outline-primary" for="pdf">PDF</label>
+                                <input type="radio" class="btn-check" name="format" id="csv">
+                                <label class="btn btn-outline-primary" for="csv">CSV</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="exportForm" class="btn btn-primary">Export</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="../js/admin/dashboard.js"></script>
+</body>
+</html>
